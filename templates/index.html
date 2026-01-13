@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="game-container">
+        <h1>🎯Guess the Number</h1>
+        <p>Guess a number between 1 and 100</p>
+
+        <select id="difficulty">
+    <option value="10">Easy (1–10)</option>
+    <option value="50">Medium (1–50)</option>
+    <option value="100" selected>Hard (1–100)</option>
+</select>
+
+
+        <input type="number" id="guessInput" placeholder="Enter your guess">
+
+        <button onclick="sendGuess()">Submit Guess</button>
+        <button onclick="resetGame()">Reset Game</button>
+
+        <p class="message" id="resultMessage">Your result will appear here ✨</p>
+    </div>
+
+   <script>
+    function sendGuess() {
+        const guess = document.getElementById("guessInput").value;
+        const message = document.getElementById("resultMessage");
+        const difficulty = document.getElementById("difficulty").value;
+
+        if (guess === "") {
+            message.textContent = "Please enter a number 🫣";
+            return;
+        }
+
+        fetch("/guess", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                guess: guess,
+                max: difficulty
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            message.textContent = data.result;
+           document.getElementById("guessInput").value = "";
+    document.getElementById("guessInput").focus();
+        });
+    }
+
+    function resetGame() {
+        const difficulty = document.getElementById("difficulty").value;
+
+        fetch("/reset", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                max: difficulty
+            })
+        })
+        .then(() => {
+            document.getElementById("resultMessage").textContent =
+                "Game reset! New number generated 🔄✨";
+        });
+    }
+
+    document.getElementById("guessInput").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            sendGuess();
+        }
+    });
+
+    document.getElementById("difficulty").addEventListener("change", function () {
+        resetGame();
+    });
+</script>
+
+
+</body>
+</html>

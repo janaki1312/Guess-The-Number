@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ef89b2, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    background-color: white;
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid black;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: popUp 0.6s ease;
+}
+
+.game-container h1 {
+    margin-bottom: 10px;
+}
+
+.game-container p {
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff80b3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+button:hover {
+    background-color: #ff4d94;
+    box-shadow: 0 4px 12px rgba(255, 77, 148, 0.4);
+}
+
+.message {
+    margin-top: 18px;
+    font-weight: 600;
+    color: #ff4d94;
+}
+
+@keyframes popUp {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+button:active{
+    transform: scale(0.97);
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
