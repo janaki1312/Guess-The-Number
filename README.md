@@ -3,7 +3,7 @@
 <h2>🔗 Live Demo</h2>
 
 <p>
-  👉 <a href="[https://YOUR-RENDER-LINK.onrender.com](https://guess-the-number-rtki.onrender.com)" target="_blank">
+  👉 <a href="https://guess-the-number-rtki.onrender.com" target="_blank">
     Click here to play the game
   </a>
 </p>
